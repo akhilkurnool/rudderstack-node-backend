@@ -33,6 +33,18 @@ Fields.init({
     type: DataTypes.STRING,
     allowNull: true
   },
+  // ideally this should be JSON but SQLite doesn't support this
+  options: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    get() {
+      const rawValue = this.getDataValue('options');
+      return rawValue ? JSON.parse(rawValue) : null;
+    },
+    set(value) {
+      this.setDataValue('options', value ? JSON.stringify(value) : null)
+    }
+  },
   requried: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
@@ -44,9 +56,3 @@ Fields.init({
   tableName: 'fields'
 });
 
-Fields.hasMany(Sources, {
-  foreignKey: {
-    name: 'fieldId',
-    allowNull: false
-  }
-})

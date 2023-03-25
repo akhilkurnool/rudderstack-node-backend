@@ -14,6 +14,7 @@ TemplatesFieldsAssoc.init({
       model: Templates,
       key: 'id'
     },
+    primaryKey: true
   },
   fieldId: {
     type: DataTypes.INTEGER,
@@ -22,9 +23,11 @@ TemplatesFieldsAssoc.init({
       model: Fields,
       key: 'id'
     },
+    primaryKey: true
   }
 }, {
   sequelize,
   modelName: 'template_field_assoc',
-  tableName: 'template_field_assoc'
+  tableName: 'template_field_assoc',
 });
+

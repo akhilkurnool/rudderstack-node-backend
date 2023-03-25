@@ -1,9 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../database';
 
-import { Fields } from './Fields';
 import { Sources } from './Sources';
-import { TemplatesFieldsAssoc } from './TemplatesFieldsAssoc';
 
 export class Templates extends Model {}
 
@@ -19,12 +17,6 @@ Templates.init({
   tableName: 'templates'
 });
 
-Templates.belongsToMany(Fields, { 
-  through: TemplatesFieldsAssoc,
-  foreignKey: 'templateId',
-  otherKey: 'fieldId',
-  as: 'fields',
-});
 
 Templates.hasMany(Sources, {
   foreignKey: {
