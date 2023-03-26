@@ -1,6 +1,7 @@
 export const Routes = {
   Templates: '/templates',
   Fields: '/fields',
-  Template: `/template/:templateId}`,
+  TemplateAssociateFields: `/template/:templateId/associate-fields`,
   Field: `/field/:fieldId`,
+  Sources: `/sources`,
 }
