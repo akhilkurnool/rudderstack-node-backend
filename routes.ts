@@ -4,4 +4,5 @@ export const Routes = {
   TemplateAssociateFields: `/template/:templateId/associate-fields`,
   Field: `/field/:fieldId`,
   Sources: `/sources`,
+  Source: `/source/:sourceId`
 }
