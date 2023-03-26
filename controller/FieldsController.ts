@@ -1,6 +1,6 @@
-import { Op } from 'sequelize';
 import { Fields } from '../models/Fields';
 
+// @ts-ignore
 export const CreateNewField = async (reqBody) => {
   const data = await Fields.create(reqBody);
   const res = data.toJSON();

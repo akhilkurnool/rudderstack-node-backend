@@ -44,7 +44,7 @@ export const CreateSource = async (templateId: number, name: string, reqfields: 
   const data = await Sources.create({ name: name.trim() });
   const id = data.toJSON().id;
   return SourceFieldValues.bulkCreate(reqfields.map(f => ({ 
-    sourceId: id,  
+    sourceId: id,
     templateId, 
     fieldId: f.id, 
     value: f.value 
@@ -61,13 +61,10 @@ export const GetSource = async (sourceId: number) => {
       sourceId
     }
   })
-  if (sourceFieldValues.length === 0) {
-    throw new Error('No values setup');
-  }
   const values = sourceFieldValues.map((f) => f.toJSON());
   return {
     id: sourceId,
     name: source.toJSON().name,
-    field: values.map((f) => ({ id: f.id, value: f.value }))
+    field: values.map((f) => ({ id: f.fieldId, value: f.value }))
   }
 }
