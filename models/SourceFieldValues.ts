@@ -14,7 +14,8 @@ SourceFieldValues.init({
     references: {
       model: Sources,
       key: 'id'
-    }
+    },
+    primaryKey: true
   },
   templateId: {
     type: DataTypes.INTEGER,
@@ -23,6 +24,7 @@ SourceFieldValues.init({
       model: Templates,
       key: 'id'
     },
+    primaryKey: true
   },
   fieldId: {
     type: DataTypes.INTEGER,
@@ -31,6 +33,7 @@ SourceFieldValues.init({
       model: Fields,
       key: 'id'
     },
+    primaryKey: true
   },
   value: {
     type: DataTypes.STRING,

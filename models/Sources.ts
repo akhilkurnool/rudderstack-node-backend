@@ -20,10 +20,3 @@ Sources.init({
   modelName: 'sources',
   tableName: 'sources'
 });
-
-Sources.hasMany(SourceFieldValues, {
-  foreignKey: {
-    name: 'sourceId',
-    allowNull: false
-  }
-})
