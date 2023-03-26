@@ -2,7 +2,15 @@ interface RequiredFields {
   [key: string]: 'string' | 'boolean' | 'number';
 }
 
-const getSetDifference = (setA: Set<string>, setB: Set<string>) => {
+interface Fields {
+  id: number;
+  name: string;
+  input_type: string;
+  requried: boolean;
+  options?: { label: string, value: string }[];
+}
+
+const getSetDifference = (setA: Set<string|number>, setB: Set<string|number>) => {
   return [...setA].filter(element => !setB.has(element))
 }
 
@@ -45,4 +53,30 @@ export const validateSelectOptions = (options: { label: string, value: string }[
     allValueSet.add(options[idx].value);
   }
   return true;
+}
+
+export const validateAllRequiredFields = (fields: Fields[], reqFields: { id: number, value: string | boolean }[]) => {
+  const requiredFieldSet = new Set<number>(fields.filter(f => f.requried).map(f => f.id));
+  const foundFieldSet = new Set<number>();
+  for (let i in reqFields) {
+    const reqField = reqFields[i];
+    if (!reqField.value) {
+      return [false, 'Field value cannot be null or empty'];
+    }
+    const fieldArr = fields.filter((f) => f.id === reqField.id);
+    if (fieldArr.length === 0) {
+      return [false, `Invalid fieldId: ${reqField.id}`];
+    }
+    const field = fieldArr[0];
+    if (field.requried) foundFieldSet.add(field.id);
+    if (field.input_type === 'checkbox' && typeof reqField.value !== 'boolean') {
+      return [false, 'Checkbox value needs to be boolean'];
+    }
+  }
+  if (requiredFieldSet.size !== foundFieldSet.size) {
+    const missingKeysArr = getSetDifference(requiredFieldSet, foundFieldSet);
+    const missingKeysSet = new Set(missingKeysArr);
+    return [false, `Some required fields are missing -> ${fields.filter(f => missingKeysSet.has(f.id)).map(f => f.name)}`]
+  }
+  return [true, ''];
 }
