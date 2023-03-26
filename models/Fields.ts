@@ -1,6 +1,5 @@
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../database';
-import { Sources } from './Sources';
 
 import { Templates } from './Templates';
 import { TemplatesFieldsAssoc } from './TemplatesFieldsAssoc';
@@ -45,7 +44,7 @@ Fields.init({
       this.setDataValue('options', value ? JSON.stringify(value) : null)
     }
   },
-  requried: {
+  required: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
     allowNull: false

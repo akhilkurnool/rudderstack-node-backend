@@ -1,8 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../database';
 
-import { Templates } from './Templates';
-import { Fields } from './Fields';
+import { SourceFieldValues } from './SourceFieldValues';
 
 export class Sources extends Model {}
 
@@ -12,23 +11,7 @@ Sources.init({
     allowNull: false,
     unique: true 
   },
-  templateId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: Templates,
-      key: 'id'
-    },
-  },
-  fieldId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: Fields,
-      key: 'id'
-    },
-  },
-  value: {
+  url: {
     type: DataTypes.STRING,
     allowNull: true
   }
@@ -38,3 +21,9 @@ Sources.init({
   tableName: 'sources'
 });
 
+Sources.hasMany(SourceFieldValues, {
+  foreignKey: {
+    name: 'sourceId',
+    allowNull: false
+  }
+})

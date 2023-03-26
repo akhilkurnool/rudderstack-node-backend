@@ -1,7 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../database';
 
-import { Sources } from './Sources';
+import { SourceFieldValues } from './SourceFieldValues';
 
 export class Templates extends Model {}
 
@@ -17,8 +17,7 @@ Templates.init({
   tableName: 'templates'
 });
 
-
-Templates.hasMany(Sources, {
+Templates.hasMany(SourceFieldValues, {
   foreignKey: {
     name: 'templateId',
     allowNull: false
