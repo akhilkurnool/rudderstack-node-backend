@@ -2,15 +2,12 @@ import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import * as Models from './models';
 
-import { sequelize } from './database';
+import cors from 'cors';
 
-import * as TemplatesController from './controller/TemplatesController';
-import * as FieldsController from './controller/FieldsController';
-import * as SourcesController from './controller/SourcesController';
+import { sequelize } from './database/index';
 
 import * as RouteHandlers from './routeHandlers';
 
-import { validateRequest, validateRegex, validateSelectOptions } from './validators';
 import { Routes } from './routes';
 
 if (process.env.NODE_ENV === 'test') {
@@ -32,6 +29,7 @@ sequelize.sync(
 const app: Express = express();
 
 app.use(express.json());
+app.use(cors())
 
 app.get('/', (req, res) => res.send('Hi'))
 
@@ -50,6 +48,8 @@ app.post(Routes.Fields, RouteHandlers.postFields);
 app.delete(Routes.Field, RouteHandlers.deleteFields);
 
 app.post(Routes.Sources, RouteHandlers.postSources);
+
+app.get(Routes.Sources, RouteHandlers.getAllSources)
 
 app.get(Routes.Source, RouteHandlers.getSource);
 

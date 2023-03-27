@@ -19,11 +19,12 @@ export const postTemplate = async (req: Request, res: Response) => {
 };
 
 export const getTemplates = async (req: Request, res: Response) => {
-  TemplatesController.GetAllTemplates().then((data) => {
-    res.send(data);
-  }).catch((error) => {
-    return res.status(500).json({ error: error })
-  })
+  TemplatesController.GetAllTemplates()
+    .then((data) => {
+      res.send(data);
+    }).catch((error) => {
+      return res.status(500).json({ error: error })
+    })
 }
 
 export const postTemplateFieldAssociation = async (req: Request, res: Response) => {
