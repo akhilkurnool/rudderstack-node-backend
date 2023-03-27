@@ -6,8 +6,7 @@ interface Fields {
   id: number;
   name: string;
   input_type: string;
-  requried: boolean;
-  options?: { label: string, value: string }[];
+  required: boolean;
 }
 
 const getSetDifference = (setA: Set<string|number>, setB: Set<string|number>) => {
@@ -56,7 +55,7 @@ export const validateSelectOptions = (options: { label: string, value: string }[
 }
 
 export const validateAllRequiredFields = (fields: Fields[], reqFields: { id: number, value: string | boolean }[]) => {
-  const requiredFieldSet = new Set<number>(fields.filter(f => f.requried).map(f => f.id));
+  const requiredFieldSet = new Set<number>(fields.filter(f => f.required).map(f => f.id));
   const foundFieldSet = new Set<number>();
   for (let i in reqFields) {
     const reqField = reqFields[i];
@@ -68,7 +67,7 @@ export const validateAllRequiredFields = (fields: Fields[], reqFields: { id: num
       return [false, `Invalid fieldId: ${reqField.id}`];
     }
     const field = fieldArr[0];
-    if (field.requried) foundFieldSet.add(field.id);
+    if (field.required) foundFieldSet.add(field.id);
     if (field.input_type === 'checkbox' && typeof reqField.value !== 'boolean') {
       return [false, 'Checkbox value needs to be boolean'];
     }
