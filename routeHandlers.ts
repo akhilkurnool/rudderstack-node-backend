@@ -88,6 +88,14 @@ export const postSources = async (req: Request, res: Response) => {
   })
 }
 
+export const getAllSources = async (req: Request, res: Response) => {
+  SourcesController.GetAllSources().then((data) => {
+    res.send(data)
+  }).catch((error) => {
+    return res.status(500).json({ error });
+  })
+}
+
 export const getSource = async (req: Request, res: Response) => {
   const sourceId = req.params.sourceId;
   const id = Number(sourceId);

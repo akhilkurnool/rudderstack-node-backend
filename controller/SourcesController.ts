@@ -68,3 +68,8 @@ export const GetSource = async (sourceId: number) => {
     field: values.map((f) => ({ id: f.fieldId, value: f.value }))
   }
 }
+
+export const GetAllSources = async () => {
+  const sources = await Sources.findAll();
+  return sources;
+}
