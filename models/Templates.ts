@@ -1,9 +1,12 @@
 import { Model, DataTypes } from 'sequelize';
-import { sequelize } from '../database';
+import { sequelize }  from '../database/index';
 
 import { SourceFieldValues } from './SourceFieldValues';
 
-export class Templates extends Model {}
+export class Templates extends Model {
+  name: unknown;
+  id: any;
+}
 
 Templates.init({
   name: {

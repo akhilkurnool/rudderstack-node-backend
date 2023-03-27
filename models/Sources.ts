@@ -1,9 +1,12 @@
 import { Model, DataTypes } from 'sequelize';
-import { sequelize } from '../database';
+import { sequelize } from '../database/index';
 
 import { SourceFieldValues } from './SourceFieldValues';
 
-export class Sources extends Model {}
+export class Sources extends Model {
+  id: undefined;
+  name: unknown;
+}
 
 Sources.init({
   name: {

@@ -1,10 +1,10 @@
 import { Model, DataTypes } from 'sequelize';
-import { sequelize } from '../database';
+import { sequelize } from '../database/index';
 
-import { Templates } from './Templates';
-import { TemplatesFieldsAssoc } from './TemplatesFieldsAssoc';
-
-export class Fields extends Model {}
+export class Fields extends Model {
+  name: unknown;
+  id: undefined;
+}
 
 Fields.init({
   name: {
