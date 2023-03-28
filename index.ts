@@ -27,7 +27,6 @@ sequelize.sync(
 });
 
 const app: Express = express();
-
 app.use(express.json());
 app.use(cors())
 
@@ -47,7 +46,11 @@ app.post(Routes.Fields, RouteHandlers.postFields);
 
 app.delete(Routes.Field, RouteHandlers.deleteFields);
 
+app.delete(Routes.Source, RouteHandlers.deleteSource);
+
 app.post(Routes.Sources, RouteHandlers.postSources);
+
+app.put(Routes.Sources, RouteHandlers.postSources);
 
 app.get(Routes.Sources, RouteHandlers.getAllSources)
 

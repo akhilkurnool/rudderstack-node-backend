@@ -11,7 +11,8 @@ export const postTemplate = async (req: Request, res: Response) => {
   if (!isValid) {
     return res.status(400).json({ message: reason })
   }
-  TemplatesController.CreateNewTemplate(req.body.name).then((data) => {
+  const fields = req.body.fields;
+  TemplatesController.CreateNewTemplate(req.body.name, fields).then((data) => {
     res.send(data);
   }).catch((err) => {
     return res.status(500).json({ error: err });
@@ -41,6 +42,15 @@ export const deleteTemplate = async (req: Request, res: Response) => {
     res.json({ message: 'Dropped table' })
   }).catch((error) => {
     return res.status(500).json({ error })
+  })
+}
+
+export const deleteSource = async (req: Request, res: Response) => {
+  const id = Number(req.params.sourceId);
+  SourcesController.deleteSource(id).then(() => {
+    res.send({ message: 'Deleted' })
+  }).catch((error) => {
+    return res.status(500).json({ error });
   })
 }
 
@@ -82,7 +92,8 @@ export const postSources = async (req: Request, res: Response) => {
   const body = req.body;
   const templateId = Number(body.templateId);
   const name = body.name;
-  SourcesController.CreateSource(templateId, name, body.fields).then((data) => {
+  const id = body.id ?  Number(body.id) : undefined
+  SourcesController.CreateSource(templateId, id, name, body.fields).then((data) => {
     res.send(data);
   }).catch((error) => {
     return res.status(400).json({ error: error.message });

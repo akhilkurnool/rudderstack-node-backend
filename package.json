@@ -5,9 +5,9 @@
   "main": "index.ts",
   "keywords": [],
   "scripts": {
-    "build": "npx tsc",
+    "build": "npm run test && npx tsc",
     "start": "export NODE_ENV=prod node dist/index.js",
-    "dev": "export NODE_ENV=dev concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
+    "dev": "export NODE_ENV=dev && concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
     "test": "export NODE_ENV=test && npx tsc && node dist/tests/index.js"
   },
   "dependencies": {
