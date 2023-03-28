@@ -59,3 +59,4 @@ SourceFieldValues.init({
   tableName: 'source_field_values'
 });
 
+SourceFieldValues.belongsTo(Sources)
