@@ -32,7 +32,7 @@ Fields.init({
     type: DataTypes.STRING,
     allowNull: true
   },
-  // ideally this should be JSON but SQLite doesn't support this
+  // ideally this should be JSON but SQLite doesn't support
   options: {
     type: DataTypes.STRING,
     allowNull: true,
