@@ -11,6 +11,7 @@
     "test": "export NODE_ENV=test && npx tsc && node dist/tests/index.js"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.17.1",
     "sequelize": "^6.5.0",
