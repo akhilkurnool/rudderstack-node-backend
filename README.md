@@ -1,8 +1,13 @@
-This is the backend server for RudderStack assignment. 
+This is the backend server for RudderStack assignment.
 
 This app is a simple `nodejs` server with `experss` and `SQLite` database using `sequilize` as ORM layer. Users can create new `Templates` with different `Fields` and create Data `Sources` with a specific `Template`
 
+To create a `Source` via UI, follow this [link](https://github.com/zkhil1/rudderstack-react-frontend)
+
 ## Getting Started
+
+Prerequisites: Install `nodejs`. You can follow the offical [guide](https://nodejs.org/en/download) or use `nvm`
+
 
 Clone the repository locally.
 To install dependencies, run
